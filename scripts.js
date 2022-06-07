@@ -6,8 +6,26 @@ let computerPlay = ITEMS[Math.floor(Math.random()*ITEMS.length)];
 
 
 //Play a round of the game
+/*
 let playerSelection = 'rock';
+*/
 const computerSelection = computerPlay;
+
+//playerSelection input function
+let playerSelection = prompt(String);
+
+//switch function to announce playerSelection
+switch(playerSelection) {
+    case 'rock':
+        alert("Player chooses Rock!");
+        break;
+    case 'paper':
+        alert("Player chooses Paper");
+        break;
+    case 'scissors':
+        alert("Player chooses Scissors!");
+        break;
+}
 
 function playRound(playerSelection, computerSelection) {
 
