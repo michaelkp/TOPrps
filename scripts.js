@@ -9,21 +9,33 @@ let computerPlay = ITEMS[Math.floor(Math.random()*ITEMS.length)];
 /*
 let playerSelection = 'rock';
 */
-const computerSelection = computerPlay;
 
 //playerSelection input function
-let playerSelection = prompt(String);
+let playerSelection = prompt('Please choose an item: Rock, Paper or Scissors');
+
 
 //switch function to announce playerSelection
 switch(playerSelection) {
     case 'rock':
-        alert("Player chooses Rock!");
+        console.log("Player chooses Rock!");
         break;
     case 'paper':
-        alert("Player chooses Paper");
+        console.log("Player chooses Paper");
         break;
     case 'scissors':
-        alert("Player chooses Scissors!");
+        console.log("Player chooses Scissors!");
+        break;
+}
+const computerSelection = computerPlay;
+switch(computerSelection) {
+    case 'rock':
+        console.log("Computer chooses Rock!");
+        break;
+    case 'paper':
+        console.log("Computer chooses Paper");
+        break;
+    case 'scissors':
+        console.log("Computer chooses Scissors!");
         break;
 }
 
@@ -31,7 +43,8 @@ function playRound(playerSelection, computerSelection) {
 
     //if both players choose same item return 'try again'
     if (playerSelection == computerSelection) {
-        return('Try again!');
+        return('Try again!') && prompt('Choose again!');
+        
     } //if player choose 'rock' and computer choose 'paper' return 'game over'
     else if (computerSelection == 'paper') {
         return('Game over');
