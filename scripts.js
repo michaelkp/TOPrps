@@ -1,39 +1,26 @@
-const ITEMS = ['rock', 'paper', 'scissors'];
-const itemSTRING = ITEMS.join(' ').toLocaleLowerCase();
-/*
-const computerPlay = ITEMS[Math.floor(Math.random()*ITEMS.length)];
-console.log(computerPlay);
-*/
-//playerChoice function case insensitivity and make first letter uppercase
+const playerSelection = 'rock';
+console.log(playerSelection);
+const computerSelection = computerPlay(1, 3);
 
-function playerSelection(ITEMS) {
-    let input = prompt(`Please choose an item ${ITEMS}.`);
-    let choice = input.toLocaleLowerCase();
-    
-    //make case in sensitive
-    if (choice) {
-        choice === itemSTRING;
-        choice.localeCompare(itemSTRING, undefined, {sensitivity: 'base' });   
-    }
+//computer chooses random item
+function computerPlay( min, max) {
+   
+   let x = Math.floor((Math.random() * max - min) + 1);
+   
+   
+   if (x === 0) {
+    console.log('The computer chose Rock!');
+} else if (x === 1) {
+    console.log('The computer chose Paper!');
+} else { 
+    console.log('The computer chose Scissors!')
+}
+}
 
-    //make first letter of choice uppercase
-    const playerChoice = choice[0].toUpperCase() + choice.substring(1).toLowerCase();
-
-    //compare player choice to ITEMS
-    if (itemSTRING.includes(choice)) {
-        console.log(`You chose ${playerChoice}!`);
-    } else {  
-        console.log(`${playerChoice} is not an item, please try again.`);
-        playerSelection(ITEMS);
+function playRound(computerSelection, playerSelection) {
+    if (computerSelection === playerSelection) {
+        console.log(`Tied!`);
     } 
 }
-playerSelection(ITEMS);
+console.log(playRound(computerSelection, playerSelection));
 
-//computer chooses item and make it upperCase
-function computerSelection(ITEMS) {
-    const computerPlay = ITEMS[Math.floor(Math.random()*ITEMS.length)];
-    const computerChoice = computerPlay[0].toUpperCase() + computerPlay.substring(1).toLowerCase();
-    console.log(`The computer chose ${computerChoice}!`);
-    
-}
-computerSelection(ITEMS);
