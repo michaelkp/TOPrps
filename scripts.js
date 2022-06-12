@@ -4,17 +4,18 @@ console.log(x);
 let input = prompt(`Please choose Rock, Paper or Scissors.`);
 
 const playerSelection = playerInput(input);
-console.log('player' + playerSelection);
+//console.log('player' + playerSelection);
 const computerSelection = computerPlay(x);
 
 //capitialize first letter of playerSelection and computerSelection
+
 const capPlay = playerSelection.substring(0,1).toUpperCase()+playerSelection.slice(1);
 
 const capCom = computerSelection.substring(0,1).toUpperCase()+computerSelection.slice(1);
 
 //asks player to choose item
 function playerInput() {
-    
+
     if(input.toLowerCase() === 'rock') {
         console.log(`You chose Rock!`);
     } else if (input.toLowerCase() === 'paper') {
@@ -55,18 +56,21 @@ function computerPlay(x) {
 //play a round of the game
 function playRound(computerSelection, playerSelection) {
 
+    const win = `You won! ${capPlay} beats ${capCom}.`;
+    const lose = `You lost! ${capCom} beats ${capPlay}.`;
+    const tied = `Tied! ${capPlay} and ${capCom} are the same.`;
     //if player and computer choose same item
    if (playerSelection === computerSelection) {
-        console.log(`Tied! ${capPlay} and ${capCom} are the same.`);
-        return ;
+        console.log(tied);
+        return;
    }
     //if player chooses rock
     if (playerSelection === 'rock') {
         if (computerSelection === 'scissors') {
-            console.log(`You won! ${capPlay} beats ${capCom}.`);
+            console.log(win);
             return;
         } else {
-            console.log(`You lost! ${capCom} beats ${capPlay}.`);
+            console.log(lose);
             return;
         }
     }
@@ -74,10 +78,10 @@ function playRound(computerSelection, playerSelection) {
     //if player chooses paper
     if (playerSelection === 'paper') {
         if (computerSelection === 'rock') {
-            console.log(`You won! ${capPlay} beats ${capCom}.`);
+            console.log(win);
             return;
         } else {
-            console.log(`You lost! ${capCom} beats ${capPlay}.`);
+            console.log(lose);
             return;
         }
     }
@@ -85,11 +89,11 @@ function playRound(computerSelection, playerSelection) {
     //if player chooses scissors
     if (playerSelection === 'scissors') {
         if (computerSelection === 'paper') {
-            console.log(`You won! ${capPlay} beats ${capCom}.`);
-            return;
+            console.log(win);
+            return ;
         } else {
-            console.log(`You lost! ${capCom} beats ${capPlay}.`);
-            return;
+            console.log(lose);
+            return ;
         }
     }
 }
