@@ -50,39 +50,43 @@ function computerPlay(x) {
 }
 //play a round of the game
 function playRound(computerSelection, playerSelection) {
-    let won = console.log(`You won! ${playerSelection} beats ${computerSelection}`);
-    let lost = console.log(`You lost! ${computerSelection} beats ${playerSelection}.`);
-    
+
     //tie
-   if (playerSelection == computerSelection) {
-       console.log(`You tied!`);
-       return;
+   if (playerSelection === computerSelection) {
+        console.log(`Tied! ${playerSelection} and ${computerSelection} are the same.`);
+        return ;
    }
     //rock
-    if (playerSelection == 'rock' && computerSelection == 'scissors'){
-        //console.log(`You won! Rock beats Scissors.`);
-        return won;
-    } else if (playerSelection == 'rock' && computerSelection == 'paper') {
-        //console.log(`You lost! Paper beats Rock.`);
-        return lost;
+    if (playerSelection === 'rock') {
+        if (computerSelection === 'scissors') {
+            console.log(`You won! ${playerSelection} beats ${computerSelection}.`);
+            return;
+        } else {
+            console.log(`You lost! ${computerSelection} beats ${playerSelection}.`);
+            return;
+        }
     }
 
     //paper
-    if (playerSelection =='paper' && computerSelection == 'rock'){
-        //console.log(`You won! Paper beats Rock.`);
-        return won;
-    } else if (playerSelection == 'paper' && computerSelection == 'scissors') {
-        //console.log(`You lost! Scissors beats Paper.`);
-        return lost;
+    if (playerSelection === 'paper') {
+        if (computerSelection === 'rock') {
+            console.log(`You won! ${playerSelection} beats ${computerSelection}.`);
+            return;
+        } else {
+            console.log(`You lost! ${computerSelection} beats ${playerSelection}.`);
+            return;
+        }
     }
 
     //scissors
-    if (playerSelection == 'scissors' && computerSelection == 'paper'){
-        //console.log(`You won! Scissors beats Paper.`);
-        return won;
-    } else if (playerSelection == 'scissors' && computerSelection == 'rock') {
-        //console.log(`You lost! Rock beats Scissors.`);
-        return lost;
+    if (playerSelection === 'scissors') {
+        if (computerSelection === 'paper') {
+            console.log(`You won! ${playerSelection} beats ${computerSelection}.`);
+            return;
+        } else {
+            console.log(`You lost! ${computerSelection} beats ${playerSelection}.`);
+            return;
+        }
     }
 }
 playRound(computerSelection, playerSelection);
