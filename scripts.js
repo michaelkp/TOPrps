@@ -54,7 +54,8 @@ function computerPlay(x) {
 //play a round of the game
 function playRound(playerSelection, computerSelection) {
    
-    //if player and computer choose same item
+     
+   //if player and computer choose same item
    if (playerSelection === computerSelection) {
         console.log(`You tied! ${capCom} is the same as ${capPlay}.`);
         result = 'tied';
@@ -91,47 +92,29 @@ function playRound(playerSelection, computerSelection) {
         console.log(`You lost! ${capCom} beats ${capPlay}.`);
         result = 'lose';
         return result + console.log(result);
-    }
-    
+    }   
 }
 console.log('playround ' + playRound(playerSelection, computerSelection));
 
 
+function score(result) {
+    let playerScore = 0;
+    let comScore = 0;
 
-/*
-function game(playRound) {
-    let playerScore = win;
-    let comScore = lose;
-    let draw = tied;
-    let finalScore = win + lose;
-    console.log(finalScore + ' final test');
-    for (playRound = 0; playRound < 5; playRound++) {
-        this.playRound = function(){
-            playRound(computerSelection, playerSelection);
-        };
-    }
-
-    if (playRound === win) {
-        playerScore++;
-        console.log('playtest ' + playerScore);
-        //console.log(isNaN(playerScore));
-    } else if (playRound === lose) {
-        comScore++;
-        console.log(comScore + ' comtest')
-    } else {
-        draw == 0;
-        console.log(draw + ' Tie! No score.');
-        
-    }
-    if (finalScore == 5) {
-        return 'Game over!';
-    } else if (finalScore <5) {
-        this.playRound = function(computerSelection, playerSelection){
-
-        };
-        return;
-    }
-
+    if (result == 'win') {
+        playerScore = playerScore++;
+    } else if (result == 'lose') {
+        comScore = comScore++;
+    } console.log('player score ' + playerScore + ' computer score ' + comScore);
+    return;
 }
-game();
-*/
+score();
+
+function game(playRound) {
+    for ( let round = 0; round < 5; round++) {
+        
+        console.log('round ' + round);
+    }
+} 
+game(playRound);
+
