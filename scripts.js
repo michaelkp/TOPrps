@@ -11,6 +11,7 @@ let computerSelection = computerPlay();
 
 //player chooses item
 function playerInput() {
+    input = input.toLowerCase();
 
     if(input.toLowerCase() === 'rock') {
         console.log(`You chose Rock!`);
