@@ -1,4 +1,4 @@
-//console.log(computerPlay());
+
 //score
 let playerScore = 0;
 let comScore = 0;
@@ -28,8 +28,7 @@ function playerInput() {
 //computer chooses random item
 function computerPlay() {
     let x = Math.floor((Math.random() * 3));
-        console.log(x);
-
+        
     if (x == 0) { 
         x = 'rock';
         //console.log(x);
@@ -58,7 +57,7 @@ function playRound(playerSelection, computerSelection) {
         result = 'tied';
         playerScore;
         console.log('The score is Player: ' + playerScore + ' vs. Computer: ' + comScore);
-        return result + console.log(result);
+        return result;
    }
     //if player chooses rock
     if (playerSelection == 'rock' && computerSelection == 'scissors') {
@@ -66,13 +65,13 @@ function playRound(playerSelection, computerSelection) {
         result = 'win';
         playerScore++;
         console.log('The score is Player: ' + playerScore + ' vs. Computer: ' + comScore);
-        return result + console.log(result);
+        return result;
     } else if (playerSelection == 'rock' && computerSelection == 'paper'){
         console.log(`You lost! Paper beats Rock.`);
         result = 'lose';
         comScore++;
         console.log('The score is Player: ' + playerScore + ' vs. Computer: ' + comScore);
-        return result + console.log(result);
+        return result;
     }
 
     //if player chooses paper
@@ -81,13 +80,13 @@ function playRound(playerSelection, computerSelection) {
         result = 'win';
         playerScore++;
         console.log('The score is Player: ' + playerScore + ' vs. Computer: ' + comScore);
-        return result + console.log(result);
+        return result;
     } else if (playerSelection == 'paper' && computerSelection == 'scissors'){
         console.log(`You lost! Scissors beats Paper.`);
         result = 'lose';
         comScore++;
         console.log('The score is Player: ' + playerScore + ' vs. Computer: ' + comScore);
-        return result + console.log(result);
+        return result;
     }
 
     //if player chooses scissors
@@ -96,22 +95,22 @@ function playRound(playerSelection, computerSelection) {
         result = 'win';
         playerScore++;
         console.log('The score is Player: ' + playerScore + ' vs. Computer: ' + comScore);
-        return console.log(result);
+        return result;
     } else if (playerSelection == 'scissors' && computerSelection == 'rock') {
         console.log(`You lost! Rock beats Scissors.`);
         result = 'lose';
         comScore++;
         console.log('The score is Player: ' + playerScore + ' vs. Computer: ' + comScore);
-        return result + console.log(result);
+        return result;
     }   
     return playerScore + comScore;
 }
-console.log('playround ' + playRound(playerSelection, computerSelection) + 'the result is ' + result);
+playRound(playerSelection, computerSelection);
 
 
 // game function loops through playRound for 5 rounds
 function game() {
-    for (let round = 2; round < 5; round++) {
+    for (let round = 2; round <= 5; round++) {
         
         if (result == 'win') {
         input = prompt('Round ' + round + ': Choose Rock, Paper or Scissors!');
@@ -133,6 +132,17 @@ function game() {
 }
 game();
 
+//declares winner with final score
+function gameOver(playerScore, comScore) {
+    if (playerScore > comScore) {
+        console.log('You won!' + '\n' + 'Final score is:' + '\n' +  'Player: ' + playerScore + '\n' + 'Computer: ' + comScore);
+    } else if (comScore > playerScore) {
+        console.log('You lost!' + '\n' + 'Final score is:' + '\n' + 'Player: ' + playerScore + '\n' + 'Computer: ' + comScore);
+    } else if (playerScore == comScore) {
+        console.log('You tied!' + '\n' + 'Final score is:' + '\n' + 'Player: ' + playerScore + '\n' + 'Computer: ' + comScore);
+    }
+}
+gameOver(playerScore, comScore);
 
 
 
