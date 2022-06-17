@@ -1,4 +1,4 @@
-console.log(computerPlay());
+//console.log(computerPlay());
 //score
 let playerScore = 0;
 let comScore = 0;
@@ -56,19 +56,22 @@ function playRound(playerSelection, computerSelection) {
    if (playerSelection === computerSelection) {
         console.log(`You tied!`);
         result = 'tied';
-        console.log('tie the score is ' + playerScore);
+        playerScore;
+        console.log('The score is Player: ' + playerScore + ' vs. Computer: ' + comScore);
         return result + console.log(result);
    }
     //if player chooses rock
     if (playerSelection == 'rock' && computerSelection == 'scissors') {
         console.log(`You won! Rock beats Scissors.`)
         result = 'win';
-        console.log('play score is ' + playerScore);
+        playerScore++;
+        console.log('The score is Player: ' + playerScore + ' vs. Computer: ' + comScore);
         return result + console.log(result);
     } else if (playerSelection == 'rock' && computerSelection == 'paper'){
         console.log(`You lost! Paper beats Rock.`);
         result = 'lose';
-        console.log('com score is ' + comScore);
+        comScore++;
+        console.log('The score is Player: ' + playerScore + ' vs. Computer: ' + comScore);
         return result + console.log(result);
     }
 
@@ -76,12 +79,14 @@ function playRound(playerSelection, computerSelection) {
     if (playerSelection == 'paper' && computerSelection == 'rock') {
         console.log(`You won! Paper beats Rock.`)
         result = 'win';
-        console.log('play score is ' + playerScore);
+        playerScore++;
+        console.log('The score is Player: ' + playerScore + ' vs. Computer: ' + comScore);
         return result + console.log(result);
     } else if (playerSelection == 'paper' && computerSelection == 'scissors'){
         console.log(`You lost! Scissors beats Paper.`);
         result = 'lose';
-        console.log('com score is ' + comScore);
+        comScore++;
+        console.log('The score is Player: ' + playerScore + ' vs. Computer: ' + comScore);
         return result + console.log(result);
     }
 
@@ -89,12 +94,14 @@ function playRound(playerSelection, computerSelection) {
     if (playerSelection == 'scissors' && computerSelection == 'paper'){
         console.log(`You won! Scissors beats Paper.`)
         result = 'win';
-        console.log('play score is ' + playerScore);
+        playerScore++;
+        console.log('The score is Player: ' + playerScore + ' vs. Computer: ' + comScore);
         return console.log(result);
     } else if (playerSelection == 'scissors' && computerSelection == 'rock') {
         console.log(`You lost! Rock beats Scissors.`);
         result = 'lose';
-        console.log('com score is ' + comScore);
+        comScore++;
+        console.log('The score is Player: ' + playerScore + ' vs. Computer: ' + comScore);
         return result + console.log(result);
     }   
     return playerScore + comScore;
@@ -102,39 +109,28 @@ function playRound(playerSelection, computerSelection) {
 console.log('playround ' + playRound(playerSelection, computerSelection) + 'the result is ' + result);
 
 
-
+// game function loops through playRound for 5 rounds
 function game() {
-    console.log('game funtion result ' + result);
-    for (let round = 0; round <= 5; round++) {
-        console.log('round is ' + round);
+    for (let round = 2; round < 5; round++) {
+        
         if (result == 'win') {
-        console.log('game win result ' + result);
-        playerScore++;
-        input = prompt('play again');
+        input = prompt('Round ' + round + ': Choose Rock, Paper or Scissors!');
         playerSelection = playerInput(input);
         computerSelection = computerPlay();
         playRound(playerSelection, computerSelection);
     } else if (result == 'lose') {
-        console.log('game lose result ' + result);
-        comScore++;
-        input = prompt('play again');
-        computerPlay();
+        input = prompt('Round ' + round + ': Choose Rock, Paper or Scissors!');
         playerSelection = playerInput(input);
         computerSelection = computerPlay();
         playRound(playerSelection, computerSelection);
     } else if (result == 'tied') {
-        console.log('game tied result ' + result);
-        input = prompt('play again');
+        input = prompt('Round ' + round + ': Choose Rock, Paper or Scissors!');
         playerSelection = playerInput(input);
         computerSelection = computerPlay();
         playRound(playerSelection, computerSelection); 
-    } else if (playerScore === 5 || comScore === 5) {
-        return 'Game over.';
-    }
-        console.log(playerScore + ' game playerscore');   
-    }
-    
+    }   
 } 
+}
 game();
 
 
