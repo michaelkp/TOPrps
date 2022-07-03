@@ -5,10 +5,24 @@ let comScore = 0;
 
 let playerSelection;
 let computerSelection;
+//JS UI elements
+const container = document.querySelector('#container');
+const gameUI = document.createElement('div');
+    gameUI.classList.add('gameUI');
+    gameUI.textContent = 'Play Game';
+    container.appendChild(gameUI);
 
 let buttons = document.querySelectorAll('button');
     buttons.forEach(button => button.addEventListener('click', btn));  
   
+const cPlay = document.createElement('div');
+    cPlay.setAttribute('id', 'cPlay');
+const cText = document.createElement('p');
+    cText.setAttribute('id', 'cText');
+        
+    cPlay.appendChild(cText);
+    gameUI.appendChild(cPlay);
+
 function btn() {
     playerSelection = this.name;
     computerSelection = computerPlay();
@@ -17,42 +31,37 @@ function btn() {
         gameOver(playerScore, comScore);
         return;
     }
-    return console.log(playerSelection + ' test btn');
+    
     }
+
 console.log(playerSelection + ' player test');
 
 
-//JS UI elements
-const container = document.querySelector('#container');
-const gameUI = document.createElement('div');
-    gameUI.classList.add('gameUI');
-    gameUI.textContent = 'Play Game';
-    container.appendChild(gameUI);
 
 //computer chooses random item
 function computerPlay() {
 
     let x = Math.floor((Math.random() * 3));
 
-    const cPlay = document.createElement('div');
-    cPlay.classList.add('cPlay');
-    gameUI.appendChild(cPlay);
-    
+
+
     if (x == 0) { 
         x = 'rock';
-        cPlay.textContent = `The computer chose ${x}`;
+        cText.textContent = `The computer chose ${x}`;
         return x;
     }  else if (x == 1) {
         x = 'paper';
-        cPlay.textContent = `The computer chose ${x}`;
+        cText.textContent = `The computer chose ${x}`;
         return x;
     }  else if (x == 2) { 
         x = 'scissors';
-        cPlay.textContent = `The computer chose ${x}`;
+        cText.textContent = `The computer chose ${x}`;
         return x; 
     }
-    
-    console.log(cPlay)
+    //const removeText = document.getElementById('cText');
+    //buttons.addEventListener('click', removeText.remove());
+    const removeText = document.getElementById('cText');
+    removeText.remove();
 }
 
 //play a round of the game
@@ -179,6 +188,7 @@ function playAgain() {
     } playerScore = 0; 
         comScore = 0;
     console.log(playerScore + ' plScore test' + comScore + ' comScore test');
+    cText.textContent = '';
     };
     
     container.appendChild(playAgainDiv);
