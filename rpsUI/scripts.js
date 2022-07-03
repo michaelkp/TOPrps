@@ -7,13 +7,15 @@ let playerSelection;
 let computerSelection;
 
 let buttons = document.querySelectorAll('button');
-    buttons.forEach(button => button.addEventListener('click', btn));   
+    buttons.forEach(button => button.addEventListener('click', btn));  
+  
 function btn() {
     playerSelection = this.name;
     computerSelection = computerPlay();
     buttons.onclick = playRound(playerSelection, computerSelection);
     if(playerScore === 5 || comScore === 5) {
-        gameOver();
+        gameOver(playerScore, comScore);
+        return;
     }
     return console.log(playerSelection + ' test btn');
     }
@@ -104,14 +106,8 @@ function playRound() {
         console.log('The score is Player: ' + playerScore + ' vs. Computer: ' + comScore);
         return result;
     }   
-
-    if (playerScore === 5 || comScore === 5) {
-        gameOver();
-        console.log('gameover test')
-    }
-    return playerScore, comScore;
 }
-console.log('playround test')
+
 //playRound(playerSelection, computerSelection);
 
 /*
@@ -144,18 +140,46 @@ function game() {
     }console.log( ' game test')
 game(); 
 */
+
+
 //declares winner with final score
 function gameOver(playerScore, comScore) {
+    if(playerScore == 5 || comScore == 5) {
+        for(let i = 0; i < buttons.length; i++){
+            buttons[i].disabled = true;
+        };
+        console.log('disable test');
+    }
     if (playerScore > comScore) {
-        return console.log('You won!' + '\n' + 'Final score is:' + '\n' +  'Player: ' + playerScore + '\n' + 'Computer: ' + comScore);
+        console.log('You won!' + '\n' + 'Final score is:' + '\n' +  'Player: ' + playerScore + '\n' + 'Computer: ' + comScore);
+        return;
     } else if (comScore > playerScore) {
-        return console.log('You lost!' + '\n' + 'Final score is:' + '\n' + 'Player: ' + playerScore + '\n' + 'Computer: ' + comScore);
+        console.log('You lost!' + '\n' + 'Final score is:' + '\n' + 'Player: ' + playerScore + '\n' + 'Computer: ' + comScore);
+        return;
     } else if (playerScore == comScore) {
-        return console.log('You tied!' + '\n' + 'Final score is:' + '\n' + 'Player: ' + playerScore + '\n' + 'Computer: ' + comScore);
+        console.log('You tied!' + '\n' + 'Final score is:' + '\n' + 'Player: ' + playerScore + '\n' + 'Computer: ' + comScore);
+        return;
     }
 }
-gameOver(playerScore, comScore);
+//gameOver(playerScore, comScore);
 
+function playAgain() {
+    let playAgainDiv = document.createElement('div');
+    let playAgainBtn = document.createElement('button') 
+    playAgainDiv.appendChild(playAgainBtn);
+    playAgainBtn.textContent = 'Play Again?';
+
+    playAgainBtn.onclick = function(){ 
+        for(let i = 0; i < buttons.length; i++){
+            buttons[i].disabled = false;
+    } playerScore = 0; 
+        comScore = 0;
+    console.log(playerScore + ' plScore test' + comScore + ' comScore test');
+    };
+    
+    container.appendChild(playAgainDiv);
+}
+playAgain();
 
 
 
