@@ -31,24 +31,28 @@ const gameUI = document.createElement('div');
 
 //computer chooses random item
 function computerPlay() {
+
     let x = Math.floor((Math.random() * 3));
-        
+
+    const cPlay = document.createElement('div');
+    cPlay.classList.add('cPlay');
+    gameUI.appendChild(cPlay);
+    
     if (x == 0) { 
         x = 'rock';
-        //console.log(x);
-        console.log('The computer chose Rock!');
+        cPlay.textContent = `The computer chose ${x}`;
         return x;
     }  else if (x == 1) {
         x = 'paper';
-        ///console.log(x);
-        console.log('The computer chose Paper!');
+        cPlay.textContent = `The computer chose ${x}`;
         return x;
     }  else if (x == 2) { 
         x = 'scissors';
-        //console.log(x);
-        console.log('The computer chose Scissors!');
+        cPlay.textContent = `The computer chose ${x}`;
         return x; 
     }
+    
+    console.log(cPlay)
 }
 
 //play a round of the game
@@ -161,7 +165,7 @@ function gameOver(playerScore, comScore) {
         return;
     }
 }
-//gameOver(playerScore, comScore);
+
 
 function playAgain() {
     let playAgainDiv = document.createElement('div');
