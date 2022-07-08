@@ -7,13 +7,8 @@ let playerScore = 0;
 console.log(playerScore + ' test pscore let');
 let comScore = 0;
 
-//let score = [playerScore, comScore];
 let scoreP  = document.createElement('p');
     scoreP.classList.add('score');
-    
-   
-    
-//console.log(score[0] + ' pscore test');
 
 let playerSelection;
 let computerSelection;
@@ -30,20 +25,28 @@ const gameUI = document.createElement('div');
 
 let buttons = document.querySelectorAll('button');
     buttons.forEach(button => button.addEventListener('click', btn));  
-  
+    
 const cPlay = document.createElement('div');
       cPlay.setAttribute('id', 'cPlay');
 const cText = document.createElement('p');
       cText.setAttribute('id', 'cText');
         
       cPlay.appendChild(cText);
-      gameUI.appendChild(cPlay);
+      gameUI.insertBefore(cText, scoreP);
 
  
-let roundNum = 0;
+let roundNum = 1;
 const roundText = document.createElement('p');
       roundText.classList.add('round');
       roundText.textContent = `Round: ${roundNum}!`;
+      buttons.forEach(button => button.addEventListener('click', (e) => {
+        ++roundNum;
+        roundText.textContent = `Round: ${roundNum}!`;
+        if(roundNum === 6){
+            roundText.textContent = '';
+        }
+      }));
+      
 
       container.insertBefore(roundText, gameUI);
 
@@ -53,18 +56,17 @@ const roundText = document.createElement('p');
 function btn() {
     playerSelection = this.name;
     computerSelection = computerPlay();
-    buttons.onclick = playRound(playerSelection, computerSelection), ++roundNum;
-    roundText.textContent = `Round: ${roundNum}!`;
+    buttons.onclick = playRound(playerSelection, computerSelection) //++roundNum;
+    /*roundText.textContent = `Round: ${roundNum}!`;*/
     
-    if(roundNum === 5) {
+     if(roundNum <= 5) {
             gameOver(playerScore, comScore);  
         };
         console.log(roundNum + ' btn test roundNum')
         console.log(playerScore + ' btn test playerscore');
         console.log(comScore + ' btn test comscore');
-    //console.log('btn score test ' + score[0] + ' <pscore' + score[1] + ' <comscore');
-    //return score = [playerScore, comScore];
     }
+    
 
 //computer chooses random item
 function computerPlay() {
@@ -90,24 +92,22 @@ function computerPlay() {
 
 //play a round of the game
 function playRound() {
- 
+    let result = document.createElement('p');
+        result.id = 'result';
+        gameUI.insertBefore(result, scoreP);
     
    //if player and computer choose same item
    if (playerSelection === computerSelection) {
         console.log(`You tied!`);
-        //round.textContent = 'You tied';
-        //result = tied;
+        result.textContent = 'You tied!';
+        
         console.log(playerScore + ' tied test')
         playerScore;
-      //return score[playerScore, comScore];
-
-        
-        //return result;
    }
     //if player chooses rock
     if (playerSelection == 'rock' && computerSelection == 'scissors') {
         console.log(`You won! Rock beats Scissors.`)
-        //result = win;
+        result.textContent = 'You won! Rock beats Scissors.';
         console.log(playerScore + ' won test')
         ++playerScore;
         
@@ -115,49 +115,38 @@ function playRound() {
         //return result;
     } else if (playerSelection == 'rock' && computerSelection == 'paper'){
         console.log(`You lost! Paper beats Rock.`);
-        //result = lose;
+        result.textContent = 'You lost! Paper beats Rock.';
         console.log(playerScore + ' lose test')
         ++comScore;
-        
-        
-        //return result;
     }
 
     //if player chooses paper
     if (playerSelection == 'paper' && computerSelection == 'rock') {
         console.log(`You won! Paper beats Rock.`)
-        //result = win;
+        result.textContent = 'You won! Paper beats Rock.';
         console.log(playerScore + ' won test')
         ++playerScore;
-        
-        
-        //return result;
     } else if (playerSelection == 'paper' && computerSelection == 'scissors'){
         console.log(`You lost! Scissors beats Paper.`);
-        //result = lose;
+        result.textContent = 'You lost! Scissors beats Paper.';
         console.log(playerScore + ' lose test')
         ++comScore;
-        
-       
-        //return result;
     }
 
     //if player chooses scissors
     if (playerSelection == 'scissors' && computerSelection == 'paper'){
         console.log(`You won! Scissors beats Paper.`)
-        //result = win;
+        result.textContent = 'You won! Scissors beats Paper.';
         console.log(playerScore + ' won test')
         ++playerScore;
         
-        //return result;
+        
     } else if (playerSelection == 'scissors' && computerSelection == 'rock') {
         console.log(`You lost! Rock beats Scissors.`);
-        //result = lose;
+        result.textContent = 'You lost! Rock beats Scissors.';
         console.log(playerScore + ' lose test')
         ++comScore;
-        //console.log( 'round score test ' + score);
-        
-        //return result;
+
     } scoreP.textContent = `The score is Player: ${playerScore} and Computer ${comScore}!`;
 
     
@@ -190,12 +179,6 @@ function gameOver(playerScore, comScore) {
     }
 }
 
-/*function reset(playerScore, comScore) {
-    playerScore === 0;
-    comScore === 0;
-    console.log(reset + ' reset test')
-}*/
-
 function playAgain() {
     let playAgainDiv = document.createElement('div');
     let playAgainBtn = document.createElement('button') 
@@ -218,12 +201,11 @@ function playAgain() {
         roundNum = 0;
 
         roundText.textContent = `Round: ${roundNum}!`;
-        //console.log(playerScore + ' plScore test' + comScore + ' comScore test');
+        
         scoreP.textContent = `The score is Player: ${playerScore} and Computer ${comScore}!`;
 
         final.textContent = '';
-        //console.log(score + 'playagain score test')
-        //return score;
+        
     });
     gameUI.appendChild(playAgainDiv);
 }
