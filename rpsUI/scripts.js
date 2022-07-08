@@ -24,8 +24,9 @@ const gameUI = document.createElement('div');
 
 
 let buttons = document.querySelectorAll('button');
-    buttons.forEach(button => button.addEventListener('click', btn));  
+    buttons.forEach(button => button.addEventListener('click', btn));
     
+ 
 const cPlay = document.createElement('div');
       cPlay.setAttribute('id', 'cPlay');
 const cText = document.createElement('p');
@@ -146,9 +147,18 @@ function playRound() {
         console.log(playerScore + ' lose test')
         ++comScore;
 
-    } scoreP.textContent = `The score is Player: ${playerScore} and Computer ${comScore}!`;
-
+    } 
     
+    buttons.forEach(button => button.addEventListener('click', (e) => {
+        result.textContent = '';
+    }));
+
+    scoreP.textContent = `The score is Player: ${playerScore} and Computer ${comScore}!`;
+
+    playAgainBtn.addEventListener('click', (e) => {
+        result.textContent = '';
+    });
+
 }
 
 
@@ -164,15 +174,15 @@ function gameOver(playerScore, comScore) {
         for(let i = 0; i < buttons.length; i++){
             buttons[i].disabled = true;
         };
-        scoreP.textContent = `The final score is Player: ${playerScore} and Computer ${comScore}!`;
+        //scoreP.textContent = `The final score is Player: ${playerScore} and Computer ${comScore}!`;
     }
-    if (playerScore > comScore) {
+    if (roundNum === 5 && playerScore > comScore) {
         final.textContent = `You won! \n Final score is: \n Player: ${playerScore} \n Computer: ${comScore}`;
         return;
-    } else if (comScore > playerScore) {
+    } else if (roundNum === 5 && comScore > playerScore) {
         final.textContent = `You lost! \n Final score is: \n Player: ${playerScore} \n Computer: ${comScore}`;
         return;
-    } else if (playerScore == comScore) {
+    } else if (roundNum === 5 && playerScore == comScore) {
         final.textContent = `You tied! \n Final score is: \n Player: ${playerScore} \n Computer: ${comScore}`;
         return;
     }
@@ -200,7 +210,7 @@ function playAgain() {
             buttons[i].disabled = false;
         } 
            
-        roundNum = 0;
+        roundNum = 1;
 
         roundText.textContent = `Round: ${roundNum}!`;
         
@@ -213,6 +223,7 @@ function playAgain() {
     playAgainBtn.addEventListener('click', () => {
         playAgainBtn.style.visibility = 'hidden';
     });
+
     gameUI.appendChild(playAgainDiv);
 }
 playAgain();
@@ -228,7 +239,6 @@ hidePAbtn();
 function showPAbtn() {
     buttons.forEach(button => button.addEventListener('click', (e) => {if (roundNum >= 6){
         document.getElementById('playAgain').style.visibility = 'visible';
-        console.log( 'visible test')
     }}));
 }
 showPAbtn();
