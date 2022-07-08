@@ -56,8 +56,7 @@ const roundText = document.createElement('p');
 function btn() {
     playerSelection = this.name;
     computerSelection = computerPlay();
-    buttons.onclick = playRound(playerSelection, computerSelection) //++roundNum;
-    /*roundText.textContent = `Round: ${roundNum}!`;*/
+    buttons.onclick = playRound(playerSelection, computerSelection) 
     
      if(roundNum <= 5) {
             gameOver(playerScore, comScore);  
@@ -183,7 +182,10 @@ function playAgain() {
     let playAgainDiv = document.createElement('div');
     let playAgainBtn = document.createElement('button') 
     playAgainDiv.appendChild(playAgainBtn);
+    playAgainBtn.id = 'playAgain';
     playAgainBtn.textContent = 'Play Again?';
+
+   
 
     playAgainBtn.addEventListener('click', () => {
         playerScore = 0;
@@ -207,9 +209,28 @@ function playAgain() {
         final.textContent = '';
         
     });
+
+    playAgainBtn.addEventListener('click', () => {
+        playAgainBtn.style.visibility = 'hidden';
+    });
     gameUI.appendChild(playAgainDiv);
 }
 playAgain();
 
+function hidePAbtn(){
+    if(roundNum <= 6) {
+        document.getElementById('playAgain').style.visibility = 'hidden';
+        console.log('hidden test')
+    }
+};
+hidePAbtn();
+
+function showPAbtn() {
+    buttons.forEach(button => button.addEventListener('click', (e) => {if (roundNum >= 6){
+        document.getElementById('playAgain').style.visibility = 'visible';
+        console.log( 'visible test')
+    }}));
+}
+showPAbtn();
 
 
