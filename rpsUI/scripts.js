@@ -1,7 +1,4 @@
-let result;
-let tied;
-let win;
-let lose;
+
 //score
 let playerScore = 0;
 console.log(playerScore + ' test pscore let');
@@ -89,13 +86,15 @@ function computerPlay() {
     const removeCText = document.getElementById('cText');
     removeCText.remove('cText');
 }
-
-//play a round of the game
-function playRound() {
-    let result = document.createElement('p');
+let result = document.createElement('p');
         result.id = 'result';
         gameUI.insertBefore(result, scoreP);
+//play a round of the game
+function playRound() {
     
+    
+    
+
    //if player and computer choose same item
    if (playerSelection === computerSelection) {
         console.log(`You tied!`);
@@ -148,16 +147,12 @@ function playRound() {
         ++comScore;
 
     } 
-    
+    /*
     buttons.forEach(button => button.addEventListener('click', (e) => {
         result.textContent = '';
     }));
-
+*/
     scoreP.textContent = `The score is Player: ${playerScore} and Computer ${comScore}!`;
-
-    playAgainBtn.addEventListener('click', (e) => {
-        result.textContent = '';
-    });
 
 }
 
@@ -174,16 +169,16 @@ function gameOver(playerScore, comScore) {
         for(let i = 0; i < buttons.length; i++){
             buttons[i].disabled = true;
         };
-        //scoreP.textContent = `The final score is Player: ${playerScore} and Computer ${comScore}!`;
+        scoreP.textContent = '';
     }
     if (roundNum === 5 && playerScore > comScore) {
-        final.textContent = `You won! \n Final score is: \n Player: ${playerScore} \n Computer: ${comScore}`;
+        final.textContent = `Final score is: \n Player: ${playerScore} \n Computer: ${comScore}`;
         return;
     } else if (roundNum === 5 && comScore > playerScore) {
-        final.textContent = `You lost! \n Final score is: \n Player: ${playerScore} \n Computer: ${comScore}`;
+        final.textContent = `Final score is: \n Player: ${playerScore} \n Computer: ${comScore}`;
         return;
     } else if (roundNum === 5 && playerScore == comScore) {
-        final.textContent = `You tied! \n Final score is: \n Player: ${playerScore} \n Computer: ${comScore}`;
+        final.textContent = `Final score is: \n Player: ${playerScore} \n Computer: ${comScore}`;
         return;
     }
 }
@@ -208,15 +203,14 @@ function playAgain() {
     playAgainBtn.addEventListener('click', () => { 
         for(let i = 0; i < buttons.length; i++){
             buttons[i].disabled = false;
-        } 
+        };
            
         roundNum = 1;
-
         roundText.textContent = `Round: ${roundNum}!`;
         
-        scoreP.textContent = `The score is Player: ${playerScore} and Computer ${comScore}!`;
-
         final.textContent = '';
+        cText.textContent = '';
+        result.textContent = '';
         
     });
 
