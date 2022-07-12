@@ -1,7 +1,6 @@
 
 //score
 let playerScore = 0;
-console.log(playerScore + ' test pscore let');
 let comScore = 0;
 
 let scoreP  = document.createElement('p');
@@ -11,26 +10,78 @@ let playerSelection;
 let computerSelection;
 //JS UI elements
 const container = document.querySelector('#container');
+const title = document.createElement('div')
+      title.classList.add('title');
+const titleText = document.createElement('h1');
+      titleText.classList.add('titleText');
+      titleText.textContent = 'Want to play a game?';
+      title.appendChild(titleText);
+    
+const yesBtn = document.createElement('button');
+      yesBtn.id = 'yesBtn';
+      yesBtn.textContent = 'Yes!';
+      title.appendChild(yesBtn);
+const noBtn = document.createElement('button');
+      noBtn.id = 'noBtn';
+      noBtn.textContent = 'No!';
+      title.appendChild(noBtn);
+
+
+      
+      
 const gameUI = document.createElement('div');
     gameUI.classList.add('gameUI');
-    gameUI.textContent = 'Play Game';
-    
+    //gameUI.textContent = 'Play Game';
+
+    //gameUI.style.margin = '100%';
+
     gameUI.appendChild(scoreP);
+    document.getElementById('#btns')
     container.appendChild(gameUI);
+    container.insertBefore(title, gameUI);  
 
+function hideGame() {
+    gameUI.style.visibility = 'hidden';
+}
+hideGame();
 
+function showGame() {
+    yesBtn.addEventListener('click', (e) => {
+        gameUI.style.visibility = 'visible';
+        yesBtn.style.visibility = 'hidden';
+        noBtn.style.visibility = 'hidden';
+    })
+    noBtn.addEventListener('click', () => {
+        noBtn.onclick = window.open('https://google.com', '_blank')
+    })
+}
+showGame();
 
 let buttons = document.querySelectorAll('button');
+    function removeTransition(e) {
+       console.log(this);
+       if(e){
+        
+       }
+    }
     buttons.forEach(button => button.addEventListener('click', btn));
+    /*buttons.forEach(button => button.addEventListener('click', () => {
+        button.style.transform = 'scale(1.5)';
+        button.style.transition = 'transform 0.25s ease';
+    }));*/
+    buttons.forEach(button => button.addEventListener('transitionend', removeTransition));
     
+ 
  
 const cPlay = document.createElement('div');
       cPlay.setAttribute('id', 'cPlay');
+
 const cText = document.createElement('p');
       cText.setAttribute('id', 'cText');
-        
+
       cPlay.appendChild(cText);
       gameUI.insertBefore(cText, scoreP);
+      gameUI.insertBefore(btns, cText);
 
  
 let roundNum = 1;
@@ -41,12 +92,12 @@ const roundText = document.createElement('p');
         ++roundNum;
         roundText.textContent = `Round: ${roundNum}!`;
         if(roundNum === 6){
-            roundText.textContent = '';
+            roundText.style.visibility = 'hidden';
         }
       }));
       
-
-      container.insertBefore(roundText, gameUI);
+      gameUI.insertBefore(roundText, btns);
+      //container.insertBefore(roundText, gameUI);
 
     console.log(roundNum + ' playR rNum test')
     
@@ -83,6 +134,8 @@ function computerPlay() {
         cText.textContent = `The computer chose ${x}`;
         return x; 
     }
+
+
     const removeCText = document.getElementById('cText');
     removeCText.remove('cText');
 }
@@ -147,11 +200,7 @@ function playRound() {
         ++comScore;
 
     } 
-    /*
-    buttons.forEach(button => button.addEventListener('click', (e) => {
-        result.textContent = '';
-    }));
-*/
+
     scoreP.textContent = `The score is Player: ${playerScore} and Computer ${comScore}!`;
 
 }
@@ -216,6 +265,7 @@ function playAgain() {
 
     playAgainBtn.addEventListener('click', () => {
         playAgainBtn.style.visibility = 'hidden';
+        roundText.style.visibility = 'visible';
     });
 
     gameUI.appendChild(playAgainDiv);
