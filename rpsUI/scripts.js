@@ -35,18 +35,20 @@ const gameUI = document.createElement('div');
       container.insertBefore(title, gameUI);  
 
 function hideGame() {
-    gameUI.style.visibility = 'hidden';
-    
+    gameUI.style.opacity = 0; 
 }
 hideGame();
-
+function fade() {
+        gameUI.style.opacity = 1;
+        gameUI.style.transition = ('opacity .2s ease');   
+}
 function showGame() {
+
     yesBtn.addEventListener('click', (e) => {
-        
-        gameUI.style.visibility = 'visible';
         yesBtn.style.visibility = 'hidden';
         noBtn.style.visibility = 'hidden';
-        //gameUI.style.transition = 'visible 2s ease-in';
+        fade();
+        console.log(fade);
     })
     noBtn.addEventListener('click', () => {
         noBtn.onclick = window.open('https://google.com', '_blank')
@@ -93,18 +95,13 @@ let roundNum = 1;
 const roundText = document.createElement('p');
       roundText.classList.add('round');
       roundText.textContent = `Round: ${roundNum}!`;
-      
-      
       gameUI.insertBefore(roundText, btns);
   
     
 
 function btn() {
-
     playerSelection = this.name;
     computerSelection = computerPlay();
-     
-    
     this.onclick = playRound(playerSelection, computerSelection)
      if(roundNum <= 5) {
             gameOver(playerScore, comScore);  
@@ -130,14 +127,13 @@ function computerPlay() {
         cText.textContent = `The computer chose ${x}`;
         return x; 
     }
-
-
     const removeCText = document.getElementById('cText');
     removeCText.remove('cText');
 }
 let result = document.createElement('p');
         result.id = 'result';
         gameUI.insertBefore(result, scoreP);
+
 //play a round of the game
 function playRound() {
     
@@ -199,14 +195,12 @@ function playRound() {
 }
 
 
-let final = document.createElement('p');
-final.classList.add('gameOver');
-gameUI.appendChild(final);
+const final = document.createElement('p');
+      final.classList.add('gameOver');
+      gameUI.appendChild(final);
 
 //declares winner with final score
 function gameOver(playerScore, comScore) {
-
-
     if(roundNum === 5) {
         for(let i = 0; i < buttons.length; i++){
             buttons[i].disabled = true;
@@ -227,9 +221,9 @@ function gameOver(playerScore, comScore) {
 function playAgain() {
     let playAgainDiv = document.createElement('div');
     let playAgainBtn = document.createElement('button') 
-    playAgainDiv.appendChild(playAgainBtn);
-    playAgainBtn.id = 'playAgain';
-    playAgainBtn.textContent = 'Play Again?';
+        playAgainDiv.appendChild(playAgainBtn);
+        playAgainBtn.id = 'playAgain';
+        playAgainBtn.textContent = 'Play Again?';
 
 
     playAgainBtn.addEventListener('click', () => {
