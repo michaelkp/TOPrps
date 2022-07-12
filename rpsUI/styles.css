@@ -3,9 +3,7 @@ body {
     min-height: 100vh;
     max-width: 100%;
 
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
+    
 }
 
 #container {
@@ -13,18 +11,24 @@ body {
     margin-left: auto;
     margin-right: auto;
     width: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
 }
 
 .title {
-  
+    text-align: center;
 }
 .titleText {
     color: mintcream;
     font-size: 100px;
     text-align: center;
     font-family: helvetica;
-    margin-top: -100px;
+    margin-top: 0px;
     padding-bottom: 50px;
+    margin: 20px;
+
 
 }
 .gameUI {
@@ -43,8 +47,11 @@ body {
 }
 
 button {
-    background-image: linear-gradient(midnightblue, hotpink);
-    color: mintcream;
+    background-color: mintcream;
+    
+    background-image: linear-gradient(-91deg, hotpink, MidnightBlue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-size: 40px;
     border-radius: 10px;
     border: 1px solid mintcream;
@@ -58,9 +65,7 @@ button:hover {
     -webkit-text-stroke: 2px transparent;
 }
 
-#gameBtn {
-    transform: scale(1.5);
-    transition: 0.25s;
-
+#yesBtn {
+    margin-right: 25px;
 }
 
