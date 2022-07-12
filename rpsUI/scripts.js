@@ -73,13 +73,14 @@ const buttons = document.querySelectorAll('button');
     
 const gameBtns = document.querySelectorAll('.gameBtn');
       gameBtns.forEach(button => button.addEventListener('click', (e) => {
-          console.log('gamebtns test')
           roundNum++;
           roundText.textContent = `Round: ${roundNum}!`;
           if(roundNum === 6){
             roundText.style.visibility = 'hidden';
+            
         }
       }));
+      
 const cPlay = document.createElement('div');
       cPlay.setAttribute('id', 'cPlay');
 
@@ -205,6 +206,7 @@ function gameOver(playerScore, comScore) {
         for(let i = 0; i < buttons.length; i++){
             buttons[i].disabled = true;
         };
+        btns.style.visibility = 'hidden';
         scoreP.textContent = '';
     }
     if (roundNum === 5 && playerScore > comScore) {
@@ -235,6 +237,7 @@ function playAgain() {
     playAgainBtn.addEventListener('click', () => { 
         for(let i = 0; i < buttons.length; i++){
             buttons[i].disabled = false;
+            btns.style.visibility = 'visible';
         };
            
         roundNum = 1;
