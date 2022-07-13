@@ -56,19 +56,23 @@ function showGame() {
 }
 showGame();
 function removeTransition(e) {
-    console.log(this);
     if(e){
-         this.classList.remove('gameBtn');
-         this.style.transform = 'scale(1)';
-         this.style.transition = 'transform 0.05s ease-out';
+         //this.classList.remove('gameBtn');
+         this.style.transform = 'skew(0deg)';
+         this.style.transition = 'transform .02s ease';
+         this.disabled = false;
+         
     }
  }
 const buttons = document.querySelectorAll('button');
     buttons.forEach(button => button.addEventListener('click', btn));
+
     buttons.forEach(button => button.addEventListener('click', () => {
-        button.style.transform = 'scale(1.25)';
-        button.style.transition = 'transform 0.05s ease-out';
+        button.style.transform = 'skew(10deg)';
+        button.style.transition = 'transform .03s ease';
+        button.disabled = true;
     }));
+
     buttons.forEach(button => button.addEventListener('transitionend', removeTransition));
     
 const gameBtns = document.querySelectorAll('.gameBtn');
@@ -76,8 +80,7 @@ const gameBtns = document.querySelectorAll('.gameBtn');
           roundNum++;
           roundText.textContent = `Round: ${roundNum}!`;
           if(roundNum === 6){
-            roundText.style.visibility = 'hidden';
-            
+            roundText.style.display = 'none';
         }
       }));
       
@@ -198,6 +201,7 @@ function playRound() {
 
 const final = document.createElement('p');
       final.classList.add('gameOver');
+      final.style.whiteSpace = 'pre';
       gameUI.appendChild(final);
 
 //declares winner with final score
@@ -207,16 +211,20 @@ function gameOver(playerScore, comScore) {
             buttons[i].disabled = true;
         };
         btns.style.visibility = 'hidden';
+        btns.style.height = '0px';
         scoreP.textContent = '';
     }
     if (roundNum === 5 && playerScore > comScore) {
-        final.textContent = `Final score is: \n Player: ${playerScore} \n Computer: ${comScore}`;
+        final.textContent = `Final score is: \r\n Player: ${playerScore} \r\n Computer: ${comScore}`;
+        console.log(final.textContent);
         return;
     } else if (roundNum === 5 && comScore > playerScore) {
-        final.textContent = `Final score is: \n Player: ${playerScore} \n Computer: ${comScore}`;
+        final.textContent = `Final score is: \r\n Player: ${playerScore} \r\n Computer: ${comScore}`;
+        console.log(final.textContent);
         return;
     } else if (roundNum === 5 && playerScore == comScore) {
-        final.textContent = `Final score is: \n Player: ${playerScore} \n Computer: ${comScore}`;
+        final.textContent = `Final score is: \r\n Player: ${playerScore} \r\n Computer: ${comScore}`;
+        console.log(final.textContent);
         return;
     }
 }
@@ -238,6 +246,8 @@ function playAgain() {
         for(let i = 0; i < buttons.length; i++){
             buttons[i].disabled = false;
             btns.style.visibility = 'visible';
+            btns.style.height = 'auto';
+            roundText.style.display = 'block';
         };
            
         roundNum = 1;
@@ -250,8 +260,7 @@ function playAgain() {
     });
 
     playAgainBtn.addEventListener('click', () => {
-        playAgainBtn.style.visibility = 'hidden';
-        roundText.style.visibility = 'visible';
+        playAgainBtn.style.display = 'none';
     });
     
     gameUI.appendChild(playAgainDiv);
@@ -261,7 +270,7 @@ playAgain();
 
 function hidePAbtn(){
     if(roundNum <= 6) {
-        document.getElementById('playAgain').style.visibility = 'hidden';
+        document.getElementById('playAgain').style.display = 'none';
         console.log('hidden test')
     }
 };
@@ -269,7 +278,7 @@ hidePAbtn();
 
 function showPAbtn() {
     buttons.forEach(button => button.addEventListener('click', (e) => {if (roundNum >= 6){
-        document.getElementById('playAgain').style.visibility = 'visible';
+        document.getElementById('playAgain').style.display = 'inline';
     }}));
 }
 showPAbtn();
