@@ -65,7 +65,7 @@ function removeTransition(e) {
     }
  }
 
-const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('.gameBtn');
     buttons.forEach(button => button.addEventListener('click', btn));
 
     buttons.forEach(button => button.addEventListener('click', () => {
